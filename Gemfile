@@ -49,6 +49,10 @@ gem "sassc-rails"
 # Devise bundle to enable the log-in/sign-up/authentication feature
 gem "devise"
 
+# Gems thats enable logging in using google!
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
