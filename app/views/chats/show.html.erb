@@ -1,0 +1,16 @@
+<div class="container">
+  <%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary" %>
+
+  <h2 class="mt-2"><%= @chat.topic %></h2>
+
+  <div class="border rounded p-3 my-3" style="min-height: 300px;">
+    <p class="text-muted">Conversation will appear here.</p>
+    <%# The chat-bot feature (messages + LLM answers) plugs in here later. %>
+  </div>
+
+  <%# Placeholder input — not wired to a controller action yet. %>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Ask a question…" disabled>
+    <button class="btn btn-danger" disabled>Send</button>
+  </div>
+</div>
