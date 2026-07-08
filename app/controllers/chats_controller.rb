@@ -1,21 +1,20 @@
 class ChatsController < ApplicationController
-  # add once the login-feature branch is merged into master:
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
-    @chats = Chat.order(created_at: :desc)
+    @chats = current_user.chats.order(created_at: :desc)
   end
 
   def show
-    @chat = Chat.find(params[:id])
+    @chat = current_user.chats.find(params[:id])
   end
 
   def new
-    @chat = Chat.new
+    @chat = current_user.chats.build
   end
 
   def create
-    @chat = Chat.new(chat_params)
+    @chat = current_user.chats.build(chat_params)
     if @chat.save
       redirect_to @chat, notice: "Chat created."
     else
@@ -24,7 +23,7 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    @chat = Chat.find(params[:id])
+    @chat = current_user.chats.find(params[:id])
     @chat.destroy
     redirect_to chats_path, notice: "Chat deleted."
   end
