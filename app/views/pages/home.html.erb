@@ -1,2 +1,64 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<nav id="navbar" class="navbar bg-body-tertiary geist-pixel-brand">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img id="GuideRailsLogo" src="<%= image_path('GuideRailsLogoScaledTransparent.png')%>" alt="Bootstrap" width="75" height="60">
+      <a class="btn btn-outline-secondary" href="#">Sign Up</a>
+    </a>
+  </div>
+</nav>
+
+<div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+  <div class="banner p-5">
+    <div class="row align-items-center">
+      <div class="col text-start">
+        <br>
+        <h1 class="geist-pixel-brand">Welcome to <strong>GuideRails!</strong></h1>
+        <p>Your <strong>interactive Ruby on Rails documentation assistant</strong></p><br>
+        <p>Stop digging through scattered docs, Stack Overflow threads, and outdated tutorials. GuideRails lets you ask a direct question and get a clear, focused answer — grounded in Ruby on Rails concepts.</p>
+        <p><strong>What you can do with GuideRails:</strong></p>
+        <ul id="advantage-list">
+          <li>💬 Ask any question about Ruby on Rails and get an instant, relevant answer</li>
+          <li>📚 Get explanations tied directly to official Rails documentation and conventions</li>
+          <li>🕘 Revisit your past chats anytime — nothing gets lost</li>
+          <li>🚀 Start a new chat in one click whenever a new question comes up</li>
+          <li>🔒 Your own account, your own chat history — sign up in seconds</li>
+        </ul><br>
+        <a class="btn btn-outline-secondary" href="#">Sign Up</a>
+      </div>
+      <div class="col">
+        <img id="image" class="img-fluid" src="<%= image_path('web-programming-2.png')%>" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer class="bg-dark text-center text-white geist-pixel-brand">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Google -->
+      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2026 Copyright: GuideRails — Built by Hazel, Erik and Lennart with ♥️
+  </div>
+  <!-- Copyright -->
+</footer>

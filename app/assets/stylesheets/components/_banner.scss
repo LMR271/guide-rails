@@ -1,0 +1,52 @@
+.banner {
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  padding: 150px 0;
+  margin: 40px;
+}
+
+.banner h1 {
+  margin: 0;
+  color: rgb(16, 15, 15);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.banner p {
+  font-size: 18px;
+  color: rgb(16, 15, 15);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+#advantage-list {
+  text-align: left;
+  font-size: 18px;
+}
+
+#image {
+  height: auto;
+  min-height: 250px;
+  min-width: 250px;
+  width: auto;
+}
+
+.btn-outline-secondary {
+  border-radius: 10px;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #CC0000;
+  color: white;
+  transition: 5ms;
+}
+
+.geist-pixel-brand {
+  font-family: "Geist Pixel", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "ELSH" 0;
+}
