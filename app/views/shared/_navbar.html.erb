@@ -38,7 +38,7 @@
 
           </div>
         </div>
-      # When a user is signed in, they can see the new chat, and past chat buttons; as well as their avatar (to log out!)
+      <%# When a user is signed in, they can see the new chat, and past chat buttons; as well as their avatar (to log out!) %>
       <% else %>
 
         <%= link_to "Log In",
@@ -48,7 +48,7 @@
         <%= link_to "Sign Up",
             new_user_registration_path,
             class: "btn btn-outline-secondary" %>
-      # If a user is NOT signed in, then can only see the sign- and log-in button!
+      <%# If a user is NOT signed in, then can only see the sign- and log-in button! %>
       <% end %>
 
     </div>
