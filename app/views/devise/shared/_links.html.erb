@@ -1,13 +1,8 @@
 <%- if controller_name != 'sessions' %>
-  <p><%= link_to "Log in", new_session_path(resource_name) %></p>
-<% end %>
-
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p><%= link_to "Sign up", new_registration_path(resource_name) %></p>
-<% end %>
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p>
+  <p class="text-center mt-3">
+    Already have an account?
+    <%= link_to "Log in", new_session_path(resource_name) %>
+  </p>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -24,7 +19,8 @@
       url: omniauth_authorize_path(resource_name, provider),
       method: :post,
       data: {turbo: "false"} do |f| %>
-        <%= f.submit "Login with Google", class: "btn btn-primary" %>
+        <%= f.submit "Continue with Google",
+             class: "btn btn-outline-dark w-100 mt-2" %>
     <% end %>
   <% end %>
 <% end %>
