@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0">Past chats</h1>
+  <%= link_to "New Chat", new_chat_path, class: "btn btn-danger" %>
+</div>
+
+<ul class="list-group">
+  <% @chats.each do |chat| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+      <%= link_to chat.topic, chat_path(chat) %>
+      <%= button_to "🗑️", chat_path(chat), method: :delete,
+            class: "btn btn-sm btn-outline-danger",
+            data: { turbo_confirm: "Delete this chat?" } %>
+    </li>
+  <% end %>
+</ul>
