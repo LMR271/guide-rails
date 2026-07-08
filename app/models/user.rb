@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # Associations
   has_many :chats, dependent: :destroy
 
+  # Devise stuff :)
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          # for Google OmniAuth
