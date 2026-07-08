@@ -1,12 +1,21 @@
-<%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary mb-3" %>
+<div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+  <div class="banner p-5">
 
-<h2 class="mb-4"><%= @chat.topic %></h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 id="chat_title" class="mb-0 geist-pixel-brand"><%= @chat.topic %></h1>
+      <%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary" %>
+    </div>
 
-<div class="border rounded p-4 mb-3" style="min-height: 300px;">
-  <p class="text-muted mb-0">Conversation will appear here.</p>
-</div>
+    <div class="card mb-3">
+      <div id="messages" class="card-body" style="min-height: 300px;">
+        <p class="text-muted mb-0">Conversation will appear here.</p>
+      </div>
+    </div>
 
-<div class="input-group">
-  <input type="text" class="form-control" placeholder="Ask a question…" disabled>
-  <button class="btn btn-danger" disabled>Send</button>
+    <div id="new_message_container" class="input-group">
+      <input type="text" class="form-control" placeholder="Ask a question…" disabled>
+      <button class="btn btn-danger" disabled>Send</button>
+    </div>
+
+  </div>
 </div>
