@@ -3,10 +3,15 @@
 <h2 class="mb-4"><%= @chat.topic %></h2>
 
 <div class="border rounded p-4 mb-3" style="min-height: 300px;">
-  <p class="text-muted mb-0">Conversation will appear here.</p>
+  <% if @ai_answer.present? %>
+    <p><strong>You:</strong> <%= @user_question %></p>
+    <p><strong>AI:</strong> <%= @ai_answer %></p>
+  <% end %>
 </div>
 
-<div class="input-group">
-  <input type="text" class="form-control" placeholder="Ask a question…" disabled>
-  <button class="btn btn-danger" disabled>Send</button>
-</div>
+  <%= form_with url: chat_messages_path(@chat), method: :post, data: { turbo: false } do |form| %>
+    <div class="input-group">
+      <%= form.text_field :content, class: "form-control", placeholder: "Ask a question…" %>
+      <%= form.submit "Send", class: "btn btn-danger" %>
+    </div>
+  <% end %>
