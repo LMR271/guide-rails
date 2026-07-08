@@ -1,0 +1,18 @@
+.login-btn {
+  background-color: #6c757d;   // Bootstrap grey
+  border-color: #6c757d;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #5c636a;
+  border-color: #565e64;
+}
+
+.login-btn:active,
+.login-btn:focus {
+  background-color: #198754;   // Bootstrap green
+  border-color: #198754;
+  color: white;
+}
