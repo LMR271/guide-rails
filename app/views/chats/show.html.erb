@@ -10,21 +10,17 @@
 
       <div class="card mb-3">
         <div id="messages" class="card-body" style="min-height: 300px;">
-          <% if @ai_answer.present? %>
-            <p><strong>You:</strong> <%= @user_question %></p>
-            <p><strong>AI:</strong> <%= @ai_answer %></p>
+          <% if @chat.messages.any? %>
+            <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
           <% else %>
             <p class="text-muted mb-0">Conversation will appear here.</p>
           <% end %>
         </div>
       </div>
 
-      <%= form_with url: chat_messages_path(@chat), method: :post, data: { turbo: false } do |form| %>
-        <div id="new_message_container" class="input-group">
-          <%= form.text_field :content, class: "form-control", placeholder: "Ask a question…" %>
-          <%= form.submit "Send", class: "btn btn-danger" %>
-        </div>
-      <% end %>
+      <div id="new_message_container">
+        <%= render "messages/form", chat: @chat, message: @message %>
+      </div>
 
     </div>
   </div>
