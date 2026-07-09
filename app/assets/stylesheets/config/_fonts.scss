@@ -5,6 +5,13 @@
 $body-font: "Geist Pixel", "Helvetica", sans-serif;
 $headers-font: "Geist Pixel", "Helvetica", sans-serif;
 
+// Geist Pixel is a variable font — apply its optical sizing/variation
+// settings globally so every page gets it without a per-element class
+body {
+  font-optical-sizing: auto;
+  font-variation-settings: "ELSH" 0;
+}
+
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";
