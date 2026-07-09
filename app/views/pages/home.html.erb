@@ -1,3 +1,4 @@
+<% random_avatar = "avatars/avatar#{rand(1..6)}.png" %>
 <% if user_signed_in? %>
   <%# ============ DASHBOARD (logged in) ============ %>
   <div class="container-fluid" style="max-width: 1200px;">
@@ -5,7 +6,7 @@
       <div class="row align-items-start">
         <div class="col text-start">
           <br>
-          <h1 class="geist-pixel-brand">Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
+          <h1 class="geist-pixel-brand">Welcome back, <strong><%= current_user.nickname.presence || current_user.first_name || "there" %>!</strong></h1>
           <p>Are you ready to learn more about Ruby on Rails with our interactive documentation?</p>
           <p>You can decide whether you:</p>
           <ul>
@@ -45,7 +46,10 @@
         </div>
 
         <div class="col">
-          <img id="image" class="img-fluid" src="<%= image_path('html-3.png') %>" alt="">
+          <%= image_tag "avatars/avatar#{rand(1..6)}.png",
+              id: "image",
+              class: "img-fluid",
+              alt: "GuideRails avatar" %>
         </div>
       </div>
     </div>
@@ -73,7 +77,10 @@
           <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-secondary" %>
         </div>
         <div class="col">
-          <img id="image" class="img-fluid" src="<%= image_path('web-programming-2.png')%>" alt="">
+          <%= image_tag "avatars/avatar#{rand(1..6)}.png",
+              id: "image",
+              class: "img-fluid",
+              alt: "GuideRails avatar" %>
         </div>
       </div>
     </div>

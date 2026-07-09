@@ -5,12 +5,13 @@
   --bs-btn-disabled-color: #fff;
 }
 
-.btn-outline-secondary {
-  border-radius: 0;
-}
-
 .btn-outline-secondary:hover {
   background-color: #CC0000;
   color: white;
-  transition: 5ms;
+  transition: 0.15s ease;
+}
+
+.form-check-input.is-valid ~ .form-check-label,
+.was-validated .form-check-input:valid ~ .form-check-label {
+  color: inherit;
 }
