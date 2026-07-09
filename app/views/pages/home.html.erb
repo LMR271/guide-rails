@@ -5,12 +5,18 @@
       <div class="row align-items-start">
         <div class="col text-start">
           <br>
-          <h1>Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
-          <p>Pick up where you left off, or start something new.</p>
+          <h1 class="geist-pixel-brand">Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
+          <p>Are you ready to learn more about Ruby on Rails with our interactive documentation?</p>
+          <p>You can decide whether you:</p>
+          <ul>
+            <li>Would you like to <strong>continue learning</strong> about a specific concept that you have already investigated? Then just look at your <strong><%= link_to "past chats", chats_path, style: "color: inherit; text-decoration: none;" %></strong>.</li>
+            <br>
+            <li>Start a <strong>new GuideRails Chat</strong> to help you understand new concepts? Click on the <strong><%= link_to "start a chat", new_chat_path, style: "color: inherit; text-decoration: none;" %></strong> to begin with a new topic!</li>
+          </ul>
 
           <div class="card mt-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <span>Recent chats</span>
+              <span><strong></strong>Past chats</strong></span>
               <% if @total_chats > 5 %>
                 <%= link_to "View all →", chats_path, class: "btn btn-sm btn-outline-secondary" %>
               <% end %>

@@ -1,9 +1,21 @@
 <div class="container-fluid" style="max-width: 1200px;">
   <div class="banner p-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="mb-0">Start a new chat</h1>
-      <%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary" %>
+    <div class="d-flex justify-content-start align-items-center mb-4">
+      <%= link_to "← Home", root_path, class: "btn btn-sm btn-outline-secondary" %>
+      <h1 class="flex-grow-1 text-center mb-0 geist-pixel-brand">Start a new chat</h1>
+    </div>
+
+    <div>
+      <p>Welcome to your new learning journey with GuideRails! Which specific concept would you like to learn more about?</p>
+      <p>How it works:</p>
+      <ol>
+        <li>Name your new chat after the concept you want to understand. This will give you a better overview and help you set a goal for what you want to understand.</li>
+        <br>
+        <li>Click “Create Chat” to ask questions.</li>
+        <br>
+        <li>Keep Learning with GuideRails :) and have fun!</li>
+      </ol>
     </div>
 
     <div class="card">
@@ -17,7 +29,7 @@
 
           <div class="mb-3">
             <%= f.label :topic, "Chat topic", class: "form-label" %>
-            <%= f.text_field :topic, class: "form-control", placeholder: "e.g. Active Record Associations" %>
+            <%= f.text_field :topic, class: "form-control", placeholder: 'Choose your chat topic e.g. "Active Record Associations"' %>
           </div>
 
           <%= f.submit "Create chat", class: "btn btn-danger" %>
