@@ -4,3 +4,13 @@
   --bs-btn-active-color: #fff;
   --bs-btn-disabled-color: #fff;
 }
+
+.btn-outline-secondary {
+  border-radius: 0;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #CC0000;
+  color: white;
+  transition: 5ms;
+}

@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <%# ============ DASHBOARD (logged in) ============ %>
-  <div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+  <div class="container-fluid" style="max-width: 1200px;">
     <div class="banner p-5">
       <div class="row align-items-start">
         <div class="col text-start">
           <br>
-          <h1 class="geist-pixel-brand">Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
+          <h1>Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
           <p>Pick up where you left off, or start something new.</p>
 
           <div class="card mt-4">
@@ -48,12 +48,12 @@
 
 <% else %>
   <%# ============ LANDING (logged out) ============ %>
-  <div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+  <div class="container-fluid" style="max-width: 1200px;">
     <div class="banner p-5">
       <div class="row align-items-start">
         <div class="col text-start">
           <br>
-          <h1 class="geist-pixel-brand">Welcome to <strong>GuideRails!</strong></h1>
+          <h1>Welcome to <strong>GuideRails!</strong></h1>
           <p>Your <strong>interactive Ruby on Rails documentation assistant</strong></p><br>
           <p>Stop digging through scattered docs, Stack Overflow threads, and outdated tutorials. GuideRails lets you ask a direct question and get a clear, focused answer — grounded in Ruby on Rails concepts.</p>
           <p><strong>What you can do with GuideRails:</strong></p>
@@ -72,35 +72,4 @@
       </div>
     </div>
   </div>
-
-
-    <footer class="bg-dark text-center text-white geist-pixel-brand">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Google -->
-        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-
-        <!-- Github -->
-        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-          ><i class="fab fa-github"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
-    </div>
-    <!-- Grid container -->
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2026 Copyright: GuideRails — Built by Hazel, Erik and Lennart with ♥️
-    </div>
-    <!-- Copyright -->
-  </footer>
 <% end %>
