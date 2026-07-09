@@ -1,10 +1,12 @@
 <div class="container-fluid" style="max-width: 1200px;">
   <div class="banner p-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 id="chat_title" class="mb-0"><%= @chat.topic %></h1>
-      <%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary" %>
+    <div class="d-grid align-items-center mb-4" style="grid-template-columns: 1fr auto 1fr;">
+      <%= link_to "← Back", chats_path, class: "btn btn-sm btn-outline-secondary", style: "justify-self: start;" %>
+      <h1 id="chat_title" class="text-center mb-0 geist-pixel-brand"><%= @chat.topic %></h1>
+      <span></span>
     </div>
+
 
       <div class="card mb-3">
         <div id="messages" class="card-body" style="min-height: 300px;">
@@ -16,7 +18,7 @@
           <% end %>
         </div>
       </div>
-  
+
       <%= form_with url: chat_messages_path(@chat), method: :post, data: { turbo: false } do |form| %>
         <div id="new_message_container" class="input-group">
           <%= form.text_field :content, class: "form-control", placeholder: "Ask a question…" %>
@@ -26,4 +28,3 @@
 
     </div>
   </div>
-
