@@ -15,14 +15,14 @@ $body-color: $gray;
 $primary:    $blue;
 $success:    $green;
 $info:       $yellow;
-$danger:     $red;
+$danger:     #CC0000;
 $warning:    $orange;
 
 // Buttons & inputs' radius (squared, uniform across the app)
-$border-radius-sm:            0;
-$border-radius:               0;
-$border-radius-lg:            0;
-$border-radius-xl:            0;
-$border-radius-xxl:           0;
+$border-radius-sm:            2px;
+$border-radius:               2px;
+$border-radius-lg:            2px;
+$border-radius-xl:            2px;
+$border-radius-xxl:           2px;
 
 // Override other variables below!

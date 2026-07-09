@@ -4,8 +4,7 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "GuideRailsLogoScaledTransparent.png",
           id: "GuideRailsLogo",
-          width: 75,
-          height: 60 %>
+          width: 75 %>
     <% end %>
 
     <div class="d-flex align-items-center">
@@ -30,6 +29,12 @@
 
           <div class="dropdown-menu dropdown-menu-end"
                aria-labelledby="navbarDropdown">
+
+            <%= link_to "Profile",
+                profile_path,
+                class: "dropdown-item" %>
+
+            <hr class="dropdown-divider">
 
             <%= link_to "Log Out",
                 destroy_user_session_path,
