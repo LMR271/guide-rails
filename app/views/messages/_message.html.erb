@@ -1,13 +1,13 @@
 <% if message.user? %>
   <div class="d-flex justify-content-end mb-2">
-    <div class="bg-white px-3 py-2 rounded-pill">
-      <%= simple_format(message.content) %>
+    <div class="message-bubble bg-danger text-white px-3 py-2 rounded">
+      <%= simple_format(message.content, {}, wrapper_tag: "div") %>
     </div>
   </div>
 <% else %>
   <div class="d-flex justify-content-start mb-4">
-    <div class="px-3 py-2">
-      <%= simple_format(message.content) %>
+    <div class="message-bubble bg-white px-3 py-2 rounded">
+      <%= simple_format(message.content, {}, wrapper_tag: "div") %>
     </div>
   </div>
 <% end %>

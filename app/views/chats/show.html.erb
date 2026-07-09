@@ -9,11 +9,14 @@
 
 
       <div class="card mb-3">
-        <div id="messages" class="card-body" style="min-height: 300px;">
+        <div id="messages" class="card-body">
           <% if @chat.messages.any? %>
             <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
           <% else %>
-            <p class="text-muted mb-0">Conversation will appear here.</p>
+            <div class="d-flex flex-column align-items-center justify-content-center h-100 text-muted">
+              <i class="fa-solid fa-comments fa-2x mb-2"></i>
+              <p class="mb-0">Conversation will appear here.</p>
+            </div>
           <% end %>
         </div>
       </div>
