@@ -9,7 +9,7 @@
 
 
       <div class="card mb-3">
-        <div id="messages" class="card-body" style="min-height: 300px;">
+        <div id="messages" class="card-body">
           <% if @chat.messages.any? %>
             <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
           <% else %>
