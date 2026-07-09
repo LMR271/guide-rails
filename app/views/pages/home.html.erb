@@ -1,55 +1,106 @@
-<div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
-  <div class="banner p-5">
-    <div class="row align-items-center">
-      <div class="col text-start">
-        <br>
-        <h1 class="geist-pixel-brand">Welcome to <strong>GuideRails!</strong></h1>
-        <p>Your <strong>interactive Ruby on Rails documentation assistant</strong></p><br>
-        <p>Stop digging through scattered docs, Stack Overflow threads, and outdated tutorials. GuideRails lets you ask a direct question and get a clear, focused answer — grounded in Ruby on Rails concepts.</p>
-        <p><strong>What you can do with GuideRails:</strong></p>
-        <ul id="advantage-list">
-          <li>💬 Ask any question about Ruby on Rails and get an instant, relevant answer</li>
-          <li>📚 Get explanations tied directly to official Rails documentation and conventions</li>
-          <li>🕘 Revisit your past chats anytime — nothing gets lost</li>
-          <li>🚀 Start a new chat in one click whenever a new question comes up</li>
-          <li>🔒 Your own account, your own chat history — sign up in seconds</li>
-        </ul><br>
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-secondary" %>
-      </div>
-      <div class="col">
-        <img id="image" class="img-fluid" src="<%= image_path('web-programming-2.png')%>" alt="">
+<% if user_signed_in? %>
+  <%# ============ DASHBOARD (logged in) ============ %>
+  <div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+    <div class="banner p-5">
+      <div class="row align-items-start">
+        <div class="col text-start">
+          <br>
+          <h1 class="geist-pixel-brand">Welcome back, <strong><%= current_user.first_name.presence || "there" %>!</strong></h1>
+          <p>Pick up where you left off, or start something new.</p>
+
+          <div class="card mt-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span>Recent chats</span>
+              <% if @total_chats > 5 %>
+                <%= link_to "View all →", chats_path, class: "btn btn-sm btn-outline-secondary" %>
+              <% end %>
+            </div>
+
+            <% if @chats.any? %>
+              <ul class="list-group list-group-flush">
+                <% @chats.each do |chat| %>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <%= link_to chat.topic, chat_path(chat) %>
+                    <%= button_to "🗑️", chat_path(chat), method: :delete,
+                          class: "btn btn-sm btn-outline-danger",
+                          data: { turbo_confirm: "Delete this chat?" } %>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="card-body text-center text-muted">
+                <p class="mb-0">You haven't started any chats yet.</p>
+              </div>
+            <% end %>
+          </div>
+
+          <br>
+          <%= link_to "Start a chat!", new_chat_path, class: "btn btn-danger" %>
+        </div>
+
+        <div class="col">
+          <img id="image" class="img-fluid" src="<%= image_path('web-programming-2.png') %>" alt="">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-  <footer class="bg-dark text-center text-white geist-pixel-brand">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Google -->
-      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
-
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
-
-      <!-- Github -->
-      <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
-        ><i class="fab fa-github"></i
-      ></a>
-    </section>
-    <!-- Section: Social media -->
+<% else %>
+  <%# ============ LANDING (logged out) ============ %>
+  <div class="container-fluid geist-pixel-brand" style="max-width: 1200px;">
+    <div class="banner p-5">
+      <div class="row align-items-start">
+        <div class="col text-start">
+          <br>
+          <h1 class="geist-pixel-brand">Welcome to <strong>GuideRails!</strong></h1>
+          <p>Your <strong>interactive Ruby on Rails documentation assistant</strong></p><br>
+          <p>Stop digging through scattered docs, Stack Overflow threads, and outdated tutorials. GuideRails lets you ask a direct question and get a clear, focused answer — grounded in Ruby on Rails concepts.</p>
+          <p><strong>What you can do with GuideRails:</strong></p>
+          <ul id="advantage-list">
+            <li>💬 Ask any question about Ruby on Rails and get an instant, relevant answer</li>
+            <li>📚 Get explanations tied directly to official Rails documentation and conventions</li>
+            <li>🕘 Revisit your past chats anytime — nothing gets lost</li>
+            <li>🚀 Start a new chat in one click whenever a new question comes up</li>
+            <li>🔒 Your own account, your own chat history — sign up in seconds</li>
+          </ul><br>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-secondary" %>
+        </div>
+        <div class="col">
+          <img id="image" class="img-fluid" src="<%= image_path('web-programming-2.png')%>" alt="">
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Grid container -->
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2026 Copyright: GuideRails — Built by Hazel, Erik and Lennart with ♥️
-  </div>
-  <!-- Copyright -->
-</footer>
+
+
+    <footer class="bg-dark text-center text-white geist-pixel-brand">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Google -->
+        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+
+        <!-- Github -->
+        <a class="btn btn-outline-light rounded-4 m-1" href="#!" role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2026 Copyright: GuideRails — Built by Hazel, Erik and Lennart with ♥️
+    </div>
+    <!-- Copyright -->
+  </footer>
+<% end %>
