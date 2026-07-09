@@ -32,7 +32,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_09_115247) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "avatar"
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
