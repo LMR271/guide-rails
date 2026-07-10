@@ -1,4 +1,5 @@
 <%= turbo_stream.remove "empty-chat-placeholder" %>
+<%= turbo_stream.remove "optimistic-message" %>
 
 <%= turbo_stream.append "messages" do %>
   <%= render "messages/message", message: @user_message, chat: @chat %>

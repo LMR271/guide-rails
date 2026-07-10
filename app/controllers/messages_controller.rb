@@ -56,9 +56,12 @@ class MessagesController < ApplicationController
     else
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("new_message_container",
-                                                    partial: "messages/form",
-                                                    locals: { chat: @chat, message: @message }),
+          render turbo_stream: [
+                   turbo_stream.remove("optimistic-message"),
+                   turbo_stream.replace("new_message_container",
+                                        partial: "messages/form",
+                                        locals: { chat: @chat, message: @message })
+                 ],
                  status: :unprocessable_entity
         end
         format.html { render "chats/show", status: :unprocessable_entity }
