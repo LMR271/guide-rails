@@ -96,4 +96,5 @@ A `User` has many chats, a `Chat` has a topic and many messages, and each `Messa
 
 ## Contributors
 
-Built by Lennart Reh, Erik Petrowski, and Hazel Ceballos as a Le Wagon bootcamp project.
+Built by Erik Petrowski, Hazel Ceballos, and Lennart Reh as a Le Wagon bootcamp project.
+
