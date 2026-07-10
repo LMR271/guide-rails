@@ -110,3 +110,15 @@
 .code-block-wrapper .code-copy-btn:hover {
   color: #24292f;
 }
+
+.copied-label {
+  background-color: var(--bs-danger);
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  font-size: 0.75rem;
+}
+
+.is-copying {
+  pointer-events: none;
+}

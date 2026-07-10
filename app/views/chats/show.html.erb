@@ -11,7 +11,7 @@
         <div class="card mb-3">
           <div id="messages" class="card-body" data-controller="chat-scroll" data-thinking-target="messages">
             <% if @chat.messages.any? %>
-              <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
+              <%= render "messages/messages", messages: @chat.messages.order(:created_at), chat: @chat %>
             <% else %>
               <div
                 id="empty-chat-placeholder"

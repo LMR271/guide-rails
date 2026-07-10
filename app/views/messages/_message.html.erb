@@ -6,7 +6,7 @@
         <%= simple_format(message.content_was, {}, wrapper_tag: "div") %>
       </div>
 
-      <%= form_with model: [chat, message], data: { message_edit_target: "form", controller: "message-form", turbo_stream: true }, class: "message-edit-form#{' d-none' unless editing}" do |f| %>
+      <%= form_with model: [chat, message], data: { message_edit_target: "form", controller: "message-form", turbo_stream: true, action: "submit->message-form#removeSubsequent submit->message-form#showOptimisticEdit" }, class: "message-edit-form#{' d-none' unless editing}" do |f| %>
         <% if message.errors.any? %>
           <div class="alert alert-danger py-1 px-2 small mb-2"><%= message.errors.full_messages.to_sentence %></div>
         <% end %>
@@ -22,7 +22,8 @@
     <div class="message-actions mt-1<%= ' d-none' if editing %>">
       <button type="button" class="btn btn-sm message-action-btn" data-controller="clipboard"
             data-action="clipboard#copy" data-clipboard-source-value="<%= message.content_was %>" title="Copy">
-        <i class="fa-solid fa-copy"></i>
+        <i class="fa-solid fa-copy" data-clipboard-target="icon"></i>
+        <span class="d-none copied-label" data-clipboard-target="label">Copied!</span>
       </button>
       <button type="button" class="btn btn-sm message-action-btn" data-action="message-edit#edit" title="Edit">
         <i class="fa-solid fa-pen"></i>
@@ -38,7 +39,8 @@
     <div class="message-actions mt-1">
       <button type="button" class="btn btn-sm message-action-btn" data-controller="clipboard"
             data-action="clipboard#copy" data-clipboard-source-value="<%= message.content %>" title="Copy">
-        <i class="fa-solid fa-copy"></i>
+        <i class="fa-solid fa-copy" data-clipboard-target="icon"></i>
+        <span class="d-none copied-label" data-clipboard-target="label">Copied!</span>
       </button>
     </div>
   </div>

@@ -1,7 +1,8 @@
 <%= simple_form_for [chat, message],
       html: {
         data: {
-          controller: "message-form"
+          controller: "message-form",
+          action: "submit->message-form#appendOptimistic"
         }
       } do |f| %>
 
