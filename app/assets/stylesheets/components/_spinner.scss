@@ -1,0 +1,9 @@
+  .thinking-spinner {
+    width: 2rem;
+    height: 2rem;
+    animation: thinking-spin 0.8s steps(8) infinite;
+  }
+
+  @keyframes thinking-spin {
+    to { transform: rotate(360deg); }
+  }
