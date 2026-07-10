@@ -5,7 +5,7 @@ class Message < ApplicationRecord
   enum :role, { user: "user", ai_assistant: "ai_assistant" } # distinguishes human vs. AI messages; stored as strings for readability and enables message.user? / message.ai_assistant?
 
   validates :content, :role, presence: true
-  validate :user_message_limit, if: :user?
+  validate :user_message_limit, if: -> { user? && new_record? }
 
   private
 
