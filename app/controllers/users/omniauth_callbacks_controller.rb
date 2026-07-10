@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from_omniauth(auth)
     user.save if user.new_record?
 
-    if user.present?
+    if user.persisted?
       sign_out_all_scopes
       flash[:success] = t "devise.omniauth_callbacks.success", kind: "Google"
       sign_in_and_redirect user, event: :authentication

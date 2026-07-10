@@ -20,6 +20,8 @@ class User < ApplicationRecord
     # Find or create a user based on the provider and uid
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
+      user.first_name = "google"
+      user.last_name = "auth"
       user.password = Devise.friendly_token[0, 20] # Generate a random password
     end
   end
