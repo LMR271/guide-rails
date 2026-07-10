@@ -6,8 +6,8 @@
   </div>
 <% else %>
   <div class="d-flex justify-content-start mb-4">
-    <div class="message-bubble bg-white px-3 py-2 rounded">
-      <%= simple_format(message.content, {}, wrapper_tag: "div") %>
+    <div class="message-bubble message-markdown bg-white px-3 py-2 rounded">
+      <%= markdown(message.content) %>
     </div>
   </div>
 <% end %>
