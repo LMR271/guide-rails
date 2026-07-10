@@ -1,4 +1,10 @@
-<%= simple_form_for [chat, message], html: { data: { controller: "message-form" } } do |f| %>
+<%= simple_form_for [chat, message],
+      html: {
+        data: {
+          turbo: true,
+          controller: "message-form"
+        }
+      } do |f| %>
   <% if message.errors.any? %>
     <div class="alert alert-danger">
       <%= message.errors.full_messages.to_sentence %>
