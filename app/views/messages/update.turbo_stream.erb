@@ -1,0 +1,17 @@
+<% @removed_message_ids.each do |dom_id| %>
+  <%= turbo_stream.remove dom_id %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@message) do %>
+  <%= render "messages/message", message: @message, chat: @chat %>
+<% end %>
+
+<%= turbo_stream.append "messages" do %>
+  <%= render "messages/message", message: @assistant_message, chat: @chat %>
+<% end %>
+
+<%= turbo_stream.replace "new_message_container" do %>
+  <div id="new_message_container">
+    <%= render "messages/form", chat: @chat, message: @new_message %>
+  </div>
+<% end %>

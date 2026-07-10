@@ -45,11 +45,8 @@ class MessagesController < ApplicationController
     @message = @chat.messages.build(message_params.merge(role: :user))
 
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat.with_instructions(INSTRUCTIONS).with_tools(Tools::ListRailsGuides, Tools::FetchRailsGuide)
-      build_conversation_history
-      response = @ruby_llm_chat.ask(@message.content)
-      @assistant_message = @chat.messages.create!(role: :ai_assistant, content: response.content)
       @user_message = @message
+      @assistant_message = generate_assistant_reply(@previous_messages)
       @message = @chat.messages.build
 
       respond_to do |format|
@@ -69,12 +66,45 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update
+    @chat = current_user.chats.find(params[:chat_id])
+    @message = @chat.messages.find(params[:id])
+
+    if @message.update(message_params)
+      preceding_messages = @chat.messages.where("id < ?", @message.id).order(:created_at).to_a
+      trailing_messages = @chat.messages.where("id > ?", @message.id)
+      @removed_message_ids = trailing_messages.map { |message| ActionView::RecordIdentifier.dom_id(message) }
+      trailing_messages.destroy_all
+
+      @assistant_message = generate_assistant_reply(preceding_messages)
+      @new_message = @chat.messages.build
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to chat_path(@chat) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(ActionView::RecordIdentifier.dom_id(@message),
+                                                    partial: "messages/message",
+                                                    locals: { message: @message, chat: @chat }),
+                 status: :unprocessable_entity
+        end
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
-  def build_conversation_history
-    @previous_messages.each do |message|
-      @ruby_llm_chat.add_message(role: message.user? ? :user : :assistant, content: message.content)
+  def generate_assistant_reply(previous_messages)
+    ruby_llm_chat = RubyLLM.chat.with_instructions(INSTRUCTIONS).with_tools(Tools::ListRailsGuides, Tools::FetchRailsGuide)
+    previous_messages.each do |message|
+      ruby_llm_chat.add_message(role: message.user? ? :user : :assistant, content: message.content)
     end
+    response = ruby_llm_chat.ask(@message.content)
+    @chat.messages.create!(role: :ai_assistant, content: response.content)
   end
 
   def message_params
