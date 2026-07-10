@@ -1,0 +1,10 @@
+.message-bubble {
+  max-width: 55%;
+}
+
+#messages {
+  height: 55vh;
+  min-height: 280px;
+  max-height: 600px;
+  overflow-y: auto;
+}
