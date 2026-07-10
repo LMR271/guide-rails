@@ -1,13 +1,45 @@
 <% if message.user? %>
-  <div class="d-flex justify-content-end mb-3">
-    <div class="message-bubble bg-danger text-white px-3 py-2 rounded">
-      <%= simple_format(message.content, {}, wrapper_tag: "div") %>
+  <% editing = message.errors.any? %>
+  <div class="d-flex flex-column align-items-end mb-3" id="<%= dom_id(message) %>" data-controller="message-edit">
+    <div class="message-bubble-wrapper">
+      <div class="message-bubble bg-danger text-white px-3 py-2 rounded<%= ' d-none' if editing %>" data-message-edit-target="display">
+        <%= simple_format(message.content_was, {}, wrapper_tag: "div") %>
+      </div>
+
+      <%= form_with model: [chat, message], data: { message_edit_target: "form", controller: "message-form", turbo_stream: true }, class: "message-edit-form#{' d-none' unless editing}" do |f| %>
+        <% if message.errors.any? %>
+          <div class="alert alert-danger py-1 px-2 small mb-2"><%= message.errors.full_messages.to_sentence %></div>
+        <% end %>
+        <%= f.text_area :content, value: message.content, class: "form-control mb-2", rows: 2,
+              data: { message_edit_target: "input", action: "keydown->message-form#submitOnEnter" } %>
+        <div class="d-flex gap-2 justify-content-end">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-action="message-edit#cancel">Cancel</button>
+          <%= f.submit "Save", class: "btn btn-sm btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="message-actions mt-1<%= ' d-none' if editing %>">
+      <button type="button" class="btn btn-sm message-action-btn" data-controller="clipboard"
+            data-action="clipboard#copy" data-clipboard-source-value="<%= message.content_was %>" title="Copy">
+        <i class="fa-solid fa-copy"></i>
+      </button>
+      <button type="button" class="btn btn-sm message-action-btn" data-action="message-edit#edit" title="Edit">
+        <i class="fa-solid fa-pen"></i>
+      </button>
     </div>
   </div>
 <% else %>
-  <div class="d-flex justify-content-start mb-4">
-    <div class="message-bubble message-markdown bg-white px-3 py-2 rounded">
+  <div class="d-flex flex-column align-items-start mb-4" id="<%= dom_id(message) %>">
+    <div class="message-bubble message-markdown bg-white px-3 py-2 rounded" data-controller="code-copy">
       <%= markdown(message.content) %>
+    </div>
+
+    <div class="message-actions mt-1">
+      <button type="button" class="btn btn-sm message-action-btn" data-controller="clipboard"
+            data-action="clipboard#copy" data-clipboard-source-value="<%= message.content %>" title="Copy">
+        <i class="fa-solid fa-copy"></i>
+      </button>
     </div>
   </div>
 <% end %>
