@@ -2,6 +2,60 @@
   max-width: 55%;
 }
 
+.message-markdown {
+  > *:first-child { margin-top: 0; }
+  > *:last-child { margin-bottom: 0; }
+
+  // Bootstrap sizes h1-h6 as page headings; scale them down for a chat bubble.
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.35rem;
+  }
+
+  p, ul, ol {
+    margin-bottom: 0.6rem;
+  }
+
+  ul, ol {
+    padding-left: 1.25rem;
+  }
+
+  code {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 0.1em 0.3em;
+    font-size: 0.875em;
+    color: #b32d2d;
+  }
+
+  pre {
+    background-color: #f7f7f7;
+    border: 1px solid #e3e3e3;
+    border-radius: 6px;
+    padding: 0.75rem;
+    overflow-x: auto;
+    margin-bottom: 0.6rem;
+
+    code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 0.6rem;
+    font-size: 0.9em;
+
+    th, td {
+      border: 1px solid #e3e3e3;
+      padding: 0.3rem 0.5rem;
+    }
+  }
+}
+
 #messages {
   height: 55vh;
   min-height: 280px;
