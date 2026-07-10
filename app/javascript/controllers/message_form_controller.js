@@ -4,7 +4,7 @@ export default class extends Controller {
   submitOnEnter(event) {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault()
-      this.element.requestSubmit()
+      this.element.querySelector('input[type="submit"]').click()
     }
   }
 }

@@ -9,11 +9,13 @@
 
 
       <div class="card mb-3">
-        <div id="messages" class="card-body">
+        <div id="messages" class="card-body" data-controller="chat-scroll">
           <% if @chat.messages.any? %>
             <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
           <% else %>
-            <div class="d-flex flex-column align-items-center justify-content-center h-100 text-muted">
+            <div
+              id="empty-chat-placeholder"
+              class="d-flex flex-column align-items-center justify-content-center h-100 text-muted">
               <i class="fa-solid fa-comments fa-2x mb-2"></i>
               <p class="mb-0">Conversation will appear here.</p>
             </div>
