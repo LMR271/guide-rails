@@ -8,22 +8,40 @@
     </div>
 
 
-      <div class="card mb-3">
-        <div id="messages" class="card-body">
-          <% if @chat.messages.any? %>
-            <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
-          <% else %>
-            <div class="d-flex flex-column align-items-center justify-content-center h-100 text-muted">
-              <i class="fa-solid fa-comments fa-2x mb-2"></i>
-              <p class="mb-0">Conversation will appear here.</p>
-            </div>
-          <% end %>
+<div data-controller="thinking" data-action="turbo:submit-start->thinking#show turbo:submit-end->thinking#hide">
+    <div class="card mb-3">
+      <div id="messages" class="card-body" data-thinking-target="messages">
+        <% if @chat.messages.any? %>
+          <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
+        <% else %>
+          <div class="d-flex flex-column align-items-center justify-content-center h-100 text-muted">
+            <i class="fa-solid fa-comments fa-2x mb-2"></i>
+            <p class="mb-0">Conversation will appear here.</p>
+          </div>
+        <% end %>
+
+        <div class="d-none justify-content-start mb-4" data-thinking-target="spinner">
+          <div class="message-bubble bg-white px-3 py-2 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="thinking-spinner" viewBox="0 0 18 18">
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor">
+                <line x1="9" y1="1.75" x2="9" y2="4.25" opacity=".13"></line>
+                <line x1="14.127" y1="3.873" x2="12.359" y2="5.641" opacity=".25"></line>
+                <line x1="16.25" y1="9" x2="13.75" y2="9" opacity=".38"></line>
+                <line x1="14.127" y1="14.127" x2="12.359" y2="12.359" opacity=".5"></line>
+                <line x1="9" y1="16.25" x2="9" y2="13.75" opacity=".63"></line>
+                <line x1="3.873" y1="14.127" x2="5.641" y2="12.359" opacity=".75"></line>
+                <line x1="1.75" y1="9" x2="4.25" y2="9" opacity=".88"></line>
+                <line x1="3.873" y1="3.873" x2="5.641" y2="5.641"></line>
+              </g>
+            </svg>
+          </div>
         </div>
-      </div>
 
-      <div id="new_message_container">
-        <%= render "messages/form", chat: @chat, message: @message %>
       </div>
-
     </div>
+
+    <div id="new_message_container">
+      <%= render "messages/form", chat: @chat, message: @message %>
+    </div>
+
   </div>
